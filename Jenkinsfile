@@ -10,7 +10,7 @@ pipeline {
         stage('Download Build Wrapper') {
             steps {
                 powershell '''
-                  rm build-wrapper-win-x86 -Recurse -Force -ErrorAction SilentlyContinue
+                  rm .sonar/build-wrapper-win-x86 -Recurse -Force -ErrorAction SilentlyContinue
                   $path = ".sonar/build-wrapper-win-x86.zip"
                   rm $path -Force -ErrorAction SilentlyContinue
                   New-Item -ItemType directory -Path .sonar -Force
