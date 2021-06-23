@@ -38,7 +38,7 @@ pipeline {
                 script {
                     def scannerHome = tool 'SonarScanner';
                     withSonarQubeEnv() {
-                        powershell "\${scannerHome}/bin/sonar-scanner"
+                        powershell "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
