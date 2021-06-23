@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     def scannerHome = tool 'SonarScanner';
-                    withSonarQubeEnv('Jenkins-SQ') {
+                    withSonarQubeEnv() {
                         powershell "C:/Projects/sonar-scanner-4.2.0.1873-windows/bin/sonar-scanner"
                     }
                 }
