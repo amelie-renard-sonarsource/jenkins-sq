@@ -8,7 +8,10 @@ pipeline {
         }
         stage('Download Build Wrapper') {
             steps {
-                echo "hello world"
+                script {
+                    curl -sSLo build-wrapper-linux-x86.zip http://6d497a4d65db.ngrok.io/static/cpp/build-wrapper-linux-x86.zip
+                    unzip -o build-wrapper-linux-x86.zip -d .sonar
+                }
             }
         }
         stage('Build') {
