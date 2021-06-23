@@ -33,7 +33,8 @@ pipeline {
         stage('Build') {
             steps {
                 powershell '''
-                  mkdir build
+                  New-Item -ItemType directory -Path build
+                  cmake -S . -B build
                   .sonar/build-wrapper-win-x86/build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/ --config Release
                 '''
             }
