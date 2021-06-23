@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Download Build Wrapper') {
             steps {
-                sh 'mkdir -p $HOME/.sonar'
+                sh 'mkdir -p ${HOME}/.sonar'
             }
         }
         stage('Build') {
