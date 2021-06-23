@@ -15,7 +15,7 @@ pipeline {
                   rm $path -Force -ErrorAction SilentlyContinue
                   mkdir .sonar
                   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-                  (New-Object System.Net.WebClient).DownloadFile(${baseUrl}"/static/cpp/build-wrapper-win-x86.zip", $path)
+                  (New-Object System.Net.WebClient).DownloadFile("http://6d497a4d65db.ngrok.io/static/cpp/build-wrapper-win-x86.zip", $path)
                   Add-Type -AssemblyName System.IO.Compression.FileSystem
                   [System.IO.Compression.ZipFile]::ExtractToDirectory($path, ".sonar")
                 '''
@@ -38,7 +38,7 @@ pipeline {
                 script {
                     def scannerHome = tool 'SonarScanner';
                     withSonarQubeEnv() {
-                        powershell "C:/Projects/sonar-scanner-4.2.0.1873-windows/bin/sonar-scanner"
+                        powershell "\${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
