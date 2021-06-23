@@ -21,11 +21,7 @@ pipeline {
                   $path = "$HOME/.sonar/build-wrapper-win-x86.zip"
                   rm build-wrapper-win-x86 -Recurse -Force -ErrorAction SilentlyContinue
                   rm $path -Force -ErrorAction SilentlyContinue
-                  mkdir $HOME/.sonar
-                  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-                  (New-Object System.Net.WebClient).DownloadFile(${baseUrl}/static/cpp/build-wrapper-win-x86.zip", $path)
-                  Add-Type -AssemblyName System.IO.Compression.FileSystem
-                  [System.IO.Compression.ZipFile]::ExtractToDirectory($path, "$HOME/.sonar")
+                  mkdir $HOME/.sonar                  
                 '''
             }
         }
