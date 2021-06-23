@@ -37,7 +37,7 @@ pipeline {
                 script {
                     def scannerHome = tool 'SonarScanner';
                     withSonarQubeEnv('Jenkins-SQ') {
-                        bat '\${scannerHome}/bin/sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output'
+                        powershell "\${scannerHome}/bin/sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output"
                     }
                 }
             }
