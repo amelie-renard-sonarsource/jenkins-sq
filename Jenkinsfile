@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Download Build Wrapper') {
             steps {
-                sh "mkdir -p .sonar"
+                echo "hello world"
             }
         }
         stage('Build') {
