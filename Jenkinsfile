@@ -9,7 +9,7 @@ pipeline {
         stage('Download Build Wrapper') {
             steps {
                 sh "mkdir -p .sonar"
-                sh "curl -sSLo build-wrapper-linux-x86.zip ${baseUrl}/static/cpp/build-wrapper-linux-x86.zip"
+                sh "curl -sSLo build-wrapper-linux-x86.zip http://6d497a4d65db.ngrok.io/static/cpp/build-wrapper-linux-x86.zip"
                 sh "unzip -o build-wrapper-linux-x86.zip -d .sonar"
             }
         }
