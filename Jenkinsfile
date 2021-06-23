@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'linux'   
+    }
     stages {
         stage('SCM') {
             steps {
@@ -8,7 +10,7 @@ pipeline {
         }
         stage('Download Build Wrapper') {
             steps {
-                sh "mkdir -p output"
+                sh 'mkdir -p output'
             }
         }
         stage('Build') {
