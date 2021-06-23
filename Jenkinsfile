@@ -8,15 +8,13 @@ pipeline {
         }
         stage('Download Build Wrapper') {
             steps {
-                script {
-                    curl -sSLo build-wrapper-linux-x86.zip ${baseUrl}/static/cpp/build-wrapper-linux-x86.zip
-                    unzip -o build-wrapper-linux-x86.zip -d .sonar
-                }
+                sh 'curl -sSLo build-wrapper-linux-x86.zip ${baseUrl}/static/cpp/build-wrapper-linux-x86.zip'
+                sh 'unzip -o build-wrapper-linux-x86.zip -d .sonar'
             }
         }
         stage('Build') {
             steps {
-                sh ".sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make clean all"
+                sh '.sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make clean all'
             }
         }
         stage('SonarQube Analysis') {
