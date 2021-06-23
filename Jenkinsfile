@@ -33,8 +33,7 @@ pipeline {
         stage('Build') {
             steps {
                 powershell '''
-                  $env:Path += ";.sonar/build-wrapper-win-x86"
-                  build-wrapper-win-x86-64 --out-dir bw-output cmake --build build/ --config Release
+                  .sonar/build-wrapper-win-x86/build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/ --config Release
                 '''
             }
         }
