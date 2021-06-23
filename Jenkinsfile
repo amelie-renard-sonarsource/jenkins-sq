@@ -18,10 +18,10 @@ pipeline {
         stage('Download Build Wrapper') {
             steps {
                 powershell '''
-                  $path = "$HOME/.sonar/build-wrapper-win-x86.zip"
+                  $path = ".sonar/build-wrapper-win-x86.zip"
                   rm build-wrapper-win-x86 -Recurse -Force -ErrorAction SilentlyContinue
                   rm $path -Force -ErrorAction SilentlyContinue
-                  mkdir $HOME/.sonar                  
+                  mkdir .sonar                  
                 '''
             }
         }
