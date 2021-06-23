@@ -8,8 +8,7 @@ pipeline {
         }
         stage('Download Build Wrapper') {
             steps {
-                sh 'curl -sSLo build-wrapper-linux-x86.zip ${baseUrl}/static/cpp/build-wrapper-linux-x86.zip'
-                sh 'unzip -o build-wrapper-linux-x86.zip -d .sonar'
+                sh 'mkdir -p $HOME/.sonar'
             }
         }
         stage('Build') {
