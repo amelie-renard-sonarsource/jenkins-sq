@@ -2,7 +2,9 @@ pipeline {
     agent any
     stages {
         stage('SCM') {
-            git 'https://github.com/foo/bar.git'
+            steps {
+                git 'https://github.com/foo/bar.git'
+            }
         }
         stage('Download Build Wrapper') {
             steps {
