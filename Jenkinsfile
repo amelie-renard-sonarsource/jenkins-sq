@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git 'https://github.com/foo/bar.git'
+                git 'https://github.com/amelie-renard-sonarsource/jenkins-sq'
             }
         }
         stage('Download Build Wrapper') {
