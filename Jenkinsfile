@@ -10,10 +10,10 @@ pipeline {
         stage('Download Build Wrapper') {
             steps {
                 powershell '''
+                  rm .sonar/build-wrapper-win-x86 -Recurse -Force -ErrorAction SilentlyContinue
                   $path = ".sonar/build-wrapper-win-x86.zip"
-                  rm build-wrapper-win-x86 -Recurse -Force -ErrorAction SilentlyContinue
                   rm $path -Force -ErrorAction SilentlyContinue
-                  mkdir .sonar
+                  New-Item -ItemType directory -Path .sonar -Force
                   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
                   (New-Object System.Net.WebClient).DownloadFile("http://6d497a4d65db.ngrok.io/static/cpp/build-wrapper-win-x86.zip", $path)
                   Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -22,7 +22,7 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('Build') { // CMake
             steps {
                 powershell '''
                   $env:Path += ";$HOME/.sonar/build-wrapper-win-x86"
