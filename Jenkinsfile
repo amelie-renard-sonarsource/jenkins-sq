@@ -26,9 +26,10 @@ pipeline {
             steps {
                 powershell '''
                   $env:Path += ";$HOME/.sonar/build-wrapper-win-x86"
-                  New-Item -ItemType directory -Path build -Force
+                  rm build -Recurse -Force -ErrorAction SilentlyContinue
+                  New-Item -ItemType directory -Path build
                   cmake -S . -B build
-                  build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/ --config Release --target clean
+                  build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/ --config Release
                 '''
             }
         }
