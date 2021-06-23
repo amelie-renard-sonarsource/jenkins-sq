@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh '.sonar/build-wrapper-win-x86/build-wrapper-win-x86-64 --out-dir bw-output make clean all'
+                bat 'build-wrapper-win-x86/build-wrapper-win-x86-64 --out-dir bw-output make clean all'
             }
         }
         stage('SonarQube Analysis') {
@@ -22,7 +22,7 @@ pipeline {
                 script {
                     def scannerHome = tool 'SonarScanner';
                     withSonarQubeEnv('Jenkins-SQ') {
-                        sh "\${scannerHome}/bin/sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output"
+                        bat '\${scannerHome}/bin/sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output'
                     }
                 }
             }
