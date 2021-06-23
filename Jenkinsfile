@@ -9,7 +9,7 @@ pipeline {
         stage('Download Build Wrapper') {
             steps {
                 bat 'curl --create-dirs -sSLo .sonar\build-wrapper-win-x86.zip ${baseUrl}/static/cpp/build-wrapper-win-x86.zip'
-                bat 'unzip -o .sonar\build-wrapper-win-x86.zip -d .sonar\'
+                bat 'unzip -o .sonar\build-wrapper-win-x86.zip -d .sonar\ '
             }
         }
         stage('Build') {
