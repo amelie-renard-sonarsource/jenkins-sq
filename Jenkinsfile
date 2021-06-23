@@ -8,7 +8,6 @@ pipeline {
         }
         
         stage('Download Build Wrapper') {
-            steps {
                 powershell '''
                   $path = ".sonar/build-wrapper-win-x86.zip"
                   rm build-wrapper-win-x86 -Recurse -Force -ErrorAction SilentlyContinue
@@ -19,7 +18,6 @@ pipeline {
                   Add-Type -AssemblyName System.IO.Compression.FileSystem
                   [System.IO.Compression.ZipFile]::ExtractToDirectory($path, ".sonar")
                 '''
-            }
         }
         
         stage('Build') {
