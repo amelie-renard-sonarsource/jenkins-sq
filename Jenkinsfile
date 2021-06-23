@@ -22,13 +22,23 @@ pipeline {
             }
         }
         
-        stage('Build') {
+/*        stage('Build') { // CMake
             steps {
                 powershell '''
                   $env:Path += ";$HOME/.sonar/build-wrapper-win-x86"
                   New-Item -ItemType directory -Path build
                   cmake -S . -B build
                   build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/ --config Release
+                '''
+            }
+        }*/
+        
+        stage('Build') { // MsBuild
+            steps {
+                powershell '''
+                  $env:Path += ";$HOME/.sonar/build-wrapper-win-x86"
+                  $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+                  build-wrapper-win-x86-64.exe --out-dir build_wrapper_output_directory $path sonar_scanner_example.vcxproj /t:rebuild
                 '''
             }
         }
