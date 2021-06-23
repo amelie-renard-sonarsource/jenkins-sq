@@ -7,7 +7,9 @@ pipeline {
             }
         }
         stage('Download Build Wrapper') {
-            sh "mkdir -p output"
+            steps {
+                sh "mkdir -p output"
+            }
         }
         stage('Build') {
             steps {
