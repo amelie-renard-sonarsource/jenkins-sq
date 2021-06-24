@@ -15,7 +15,7 @@ pipeline {
                   rm $path -Force -ErrorAction SilentlyContinue
                   New-Item -ItemType directory -Path .sonar -Force
                   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-                  (New-Object System.Net.WebClient).DownloadFile("http://6d497a4d65db.ngrok.io/static/cpp/build-wrapper-win-x86.zip", $path)
+                  (New-Object System.Net.WebClient).DownloadFile("http://8c13c37385c9.ngrok.io/static/cpp/build-wrapper-win-x86.zip", $path)
                   Add-Type -AssemblyName System.IO.Compression.FileSystem
                   [System.IO.Compression.ZipFile]::ExtractToDirectory($path, ".sonar")
                 '''
