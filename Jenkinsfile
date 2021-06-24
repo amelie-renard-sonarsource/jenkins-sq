@@ -29,7 +29,7 @@ pipeline {
         stage('Build') { // CMake
             steps {
                 powershell '''
-                  $env:Path += ";$HOME/.sonar/build-wrapper-win-x86"
+                  $env:Path += ";.sonar/build-wrapper-win-x86"
                   New-Item -ItemType directory -Path build
                   cmake -S . -B build
                   build-wrapper-win-x86-64.exe --out-dir bw-output cmake --build build/ --config Release
